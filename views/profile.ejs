@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./stylesheets/feed.css" />
+  <link rel="stylesheet" href="./stylesheets/profile.css" />
+  <link rel="shortcut icon" type="x-icon" href="https://upload.wikimedia.org/wikipedia/commons/6/6c/Facebook_Logo_2023.png"/>
+  <title>Facebook-clone</title>
+</head>
+
+<body>
+  <nav style="position: absolute;top:-5px; box-shadow: 0 0 5px rgba(0, 0, 0, .30);">
+    <div id="left">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Facebook_Logo_2023.png" style="width: 8%; height: 70%" />
+      <div id="search">
+        <img src="https://cdn3.iconfinder.com/data/icons/feather-5/24/search-512.png" style="
+              width: 8%;
+              height: 60%;
+              position: absolute;
+              top: 18%;
+              left: 5%;
+            " />
+        <input type="text" style="
+              border: none;
+              height: 100%;
+              padding-left: 50px;
+              border-radius: 20px;
+              padding-right: 150px;
+            " placeholder="search" />
+      </div>
+    </div>
+    <div id="right">
+      <div>
+        <a href="/feed"><img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" style="object-fit: cover; width: 80%; height: 80%" /></a>
+      </div>
+      <div>
+        <a href="#"><img src="https://static-00.iconduck.com/assets.00/facebook-messenger-icon-998x1024-jtfrg5ns.png" style="object-fit: cover; width: 80%; height: 80%" /></a>
+      </div>
+      <div>
+        <a href="/profile"><img src="https://icons.veryicon.com/png/o/object/material-design-icons/notifications-1.png" style="object-fit: cover; width: 100%; height: 100%" /></a>
+      </div>
+      <div style="border-radius: 50%">
+        <a href="/profile"><img src="./images/uploads/<%= user.profileimage %>" style="object-fit: cover; width: 100%; height: 100%" /></a>
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="main">
+    <div id="header">
+      <div id="cover">
+
+        <img src="./images/uploads/<%= user.coverphoto %>" alt="Cover_Photo" style="object-fit: cover; width:100%; height:100%" />
+      </div>
+      <form id="coverupload" hidden action="/coverupload" method="post" enctype="multipart/form-data">
+        <input type="file" name="cover" />
+      </form>
+
+      <button id="coverbtn" style="
+            position: absolute;
+            width: 150px;
+            height: 50px;
+            border-radius: 50px;
+            top: 47%;
+            left: 70%;
+            display:flex;
+            align-items:center;
+            gap:10px;
+            justify-content:center;
+          ">
+        <img src="https://cdn-icons-png.flaticon.com/512/2956/2956744.png" style="width: 20%; height:50%" />
+        <p style="font-weight: bold; font-size:medium">Edit cover </p>
+      </button>
+      <br />
+      <div>
+        <div id="profile">
+          <img src="./images/uploads/<%= user.profileimage %>" class="propic" alt="Profile_picture" style="object-fit: cover; width:100%; height:100%" />
+        </div>
+        <form id="profileupload" action="/profileupload" method="post" enctype="multipart/form-data">
+          <input type="file" hidden name="profile" />
+        </form>
+
+        <button id="profilebtn" style="
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            top: 63%;
+            left: 24.5%;
+          "><img src="https://cdn-icons-png.flaticon.com/512/2956/2956744.png" style="width: 100%; height: 100%" /></button>
+      </div>
+      <div id="details">
+        <h1><%= user.firstname +" "+ user.lastname %></h1>
+        <div style="display: flex; gap:10px">
+          <a href="/edit" style="text-decoration: none; font-size:large; font-weight:bold; color:#316FF6; background-color:transparent; padding-top:10px; padding-bottom:10px; padding-left:20px; padding-right:20px; border-radius:10px; border:2px solid #316FF6">Edit Profile</a>
+          <a href="/add" style="text-decoration: none; font-size:large; font-weight:bold; color:white; background-color:#316FF6; padding-top:10px; padding-bottom:10px; padding-left:20px; padding-right:20px; border-radius:10px">Create post</a>
+
+        </div>
+      </div>
+      <p style="position: absolute; left:30%; top:68%; color:rgb(163, 161, 161);">Friends</p>
+    </div>
+
+    <div id="posts" style="margin-top:30px; margin-bottom:30px">
+      <% user.posts.forEach(function(elm){ %>
+      <div class="f-card">
+        <div class="content">
+          <p><%= elm.description %></p>
+        </div>
+        <div class="reference">
+          <img class="reference-thumb" src="/images/uploads/<%= elm.image %>" />
+          <div class="reference-content">
+            <div class="reference-title"><%= elm.title %></div>
+            <div class="reference-subtitle"> <%= elm.likes.length %> likes <%= elm.comments.length %> comments</div>
+          </div>
+        </div>
+        <div class="social">
+          <div class="social-content"></div>
+          <div class="social-buttons">
+            <a href="/likes<%= elm._id %>" style="text-decoration: none; opacity: 0.5; color:black; font-weight:bold"><i class="fa fa-thumbs-up"></i><% if(elm.likes.indexOf(user._id)!==-1){ %>
+              <span style="color: blue;">Like</span>
+              <% } else{ %>
+              <span>Like</span>
+              <% } %></a>
+            <span><i class="fa fa-share"></i>Share</span>
+          </div>
+          <div class="cmnt-form">
+            <form style="display: flex; gap: 10px; margin: 10px; overflow:hidden;" action="/comments/<%= elm.id %>" method="post">
+              <textarea
+                placeholder="Add Your Comment"
+                style="
+                  padding-left: 15px;
+                  padding-top: 10px;
+                  width: 80%;
+                  border-radius: 50px;
+                "
+                name="cmnt"
+              ></textarea>
+              <button
+                style="
+                  background-color: #0f71f1;
+                  color: white;
+                  font-weight: bold;
+                  padding-left: 20px;
+                  padding-right: 20px;
+                  border-radius: 5px;
+                  border: none;
+                "
+              >
+                Post
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+    <script>
+      document.querySelector("#coverbtn").addEventListener("click", function() {
+        document.querySelector("#coverupload input").click();
+      })
+      document.querySelector("#coverupload input").addEventListener("change", function() {
+        document.querySelector("#coverupload").submit();
+      })
+
+      document.querySelector("#profilebtn").addEventListener("click", function() {
+        document.querySelector("#profileupload input").click();
+      })
+      document.querySelector("#profileupload input").addEventListener("change", function() {
+        document.querySelector("#profileupload").submit();
+      })
+    </script>
+</body>
+
+</html>

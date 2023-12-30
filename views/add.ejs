@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Facebook-clone</title>
+  <link rel="stylesheet" href="./stylesheets/add.css">
+  <link rel="shortcut icon" type="x-icon" href="https://upload.wikimedia.org/wikipedia/commons/6/6c/Facebook_Logo_2023.png"/>
+</head>
+
+<body>
+  <main>
+    <div id="imageupload">
+      <div id="image">
+      </div>
+      <div id="below">
+        <button id="uploadbtn" style="display: flex; width:200px; height:50px;align-items:center;justify-content:center; border:2px solid #316FF6;border-radius:10px; gap:10px;color:#316FF6; cursor:pointer">
+            <img src="https://cdn-icons-png.flaticon.com/512/1160/1160358.png" style="width:20%; height:50%">
+            <p style="font-weight: bold;">Upload Photo</p>
+        </button>
+        <form action="/createpost" method="post" enctype="multipart/form-data" style="display: flex;flex-direction:column; width:100%; align-items:center; gap:10px">
+          <input type="file"  name="image" hidden id="inputphoto">
+          <input type="text" placeholder="title" id="title" name="title">
+            <textarea type="text" placeholder="Description" id="desc" name="desc"></textarea>
+            <input type="submit" value="post" name="upload" id="postbtn" >
+        </form>
+      </div>
+    </div>
+  </main>
+  <script>
+    document.querySelector("#uploadbtn").addEventListener("click",function(){
+      document.querySelector("#inputphoto").click();
+    })
+  </script>
+</body>
+
+</html>

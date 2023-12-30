@@ -1,0 +1,68 @@
+<html>
+
+<head>
+  <title>Facebook-clone</title>
+  <link rel="stylesheet" type="text/css" href="./stylesheets/register.css">
+  <link rel="shortcut icon" type="x-icon" href="https://upload.wikimedia.org/wikipedia/commons/6/6c/Facebook_Logo_2023.png"/>
+</head>
+
+<body>
+  <!-- navbar -->
+  <div class="nav">
+    <div class="inner mg">
+      <!-- logo area -->
+      <div class="logo">
+        <img src="https://i.imgur.com/HTTU3R6.png">
+      </div>
+      <!-- login area -->
+      <table class="table">
+        <tr>
+          <td>Email or Phone</td>
+          <td>Password</td>
+          <td></td>
+        </tr>
+        <form action="/login" method="post">
+          <tr id="login">
+            <td><input type="email" placeholder="email" name="username" ></td>
+            <td><input type="password" placeholder="New Password" name="password"></td>
+            <td><input type="submit" value="Log in"></td>
+          </tr>
+        </form>
+        <tr>
+          <td></td>
+          <td><a href="reset.html">Forgotten account?</a></td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+  </div> <!-- end navigation -->
+  <!-- main page area -->
+  <div class="main mg">
+    <div class="left">
+      <h3>Facebook helps you connect and share with the people in your life.</h3>
+      <img id="cimg" src="https://i.imgur.com/p4acFUi.png">
+    </div>
+    <!-- signup form -->
+    <div class="right">
+      <form action="/register" method="post">
+        <h1>Sign Up</h1>
+        <p><strong class="strong">Developed By<aj> Ankan Mandal</aj></strong></p>
+        <input type="text" placeholder="First name" name="firstname">
+        <input type="text" placeholder="last name" name="lastname">
+        <input type="email" placeholder="email" name="username" >
+        <input type="password" placeholder="New Password" name="password">
+        <strong>Gender</strong>
+        <br>
+
+        <label><input type="radio" name="gender" value="Female"> Female</label>
+        <label><input type="radio" name="gender" id="male" value="Male"> Male</label>
+        <p class="fs_14">By clicking Sign Up, you agree to our <a href="">Terms</a>, <a href="">Data Policy</a> and <a href="">Cookies Policy</a>. You may receive SMS Notifications from us and can opt out any time</p>
+        <input type="submit" value="Sign Up">
+        <hr><br>
+        <a href="" id="cp">create a page</a> for your business
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Facebook-clone</title>
+  <link rel="stylesheet" href="./stylesheets/style.css" />
+  <link rel="shortcut icon" type="x-icon" href="https://upload.wikimedia.org/wikipedia/commons/6/6c/Facebook_Logo_2023.png"/>
+</head>
+
+<body>
+  <div class="content">
+    <div class="flex-div">
+      <div class="name-content">
+        <h1 class="logo">Facebook</h1>
+        <p>Connect with friends and the world around you on Facebook.</p>
+      </div>
+      <form action="/login" method="post">
+        <input type="email" placeholder="Email" name="username" />
+        <input type="password" placeholder="Password" name="password" required>
+        <input class="login" type="submit" value="Login">
+        <a href="#">Forgot Password ?</a>
+        <hr>
+        <a href="/register" class="create-account">Create New Account</a>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>
